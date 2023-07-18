@@ -4,6 +4,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
+import com.damai.base.glides.GlideApp
 
 /**
  * Created by damai007 on 18/July/2023
@@ -40,4 +42,12 @@ fun AppCompatEditText.addOnTextChanged(callback: (String) -> Unit) {
 
         override fun afterTextChanged(p0: Editable?) {}
     })
+}
+
+fun AppCompatImageView.loadImageWithCenterCrop(
+    url: String?
+) {
+    GlideApp.with(context)
+        .load(url)
+        .into(this)
 }

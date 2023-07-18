@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.damai.base.BaseListAdapter
 import com.damai.base.BaseViewHolder
+import com.damai.base.extensions.loadImageWithCenterCrop
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.ItemRvJobListBinding
 import com.damai.domain.models.JobPositionModel
@@ -31,7 +32,13 @@ class JobListAdapter : BaseListAdapter<ItemRvJobListBinding, JobPositionModel>(
     ): BaseViewHolder<ItemRvJobListBinding, JobPositionModel>(binding = dataBinding) {
 
         override fun bind(data: JobPositionModel) {
+            with(binding) {
+                ivCompanyLogo.loadImageWithCenterCrop(url = data.companyLogo)
 
+                tvJobTitle.text = data.title
+                tvCompanyName.text = data.company
+                tvCompanyLocation.text = data.location
+            }
         }
     }
 }

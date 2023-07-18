@@ -1,6 +1,7 @@
 package com.damai.dansmultipro.ui.home
 
 import com.damai.base.BaseFragment
+import com.damai.base.extensions.observe
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.FragmentHomeBinding
 import com.damai.dansmultipro.ui.MainViewModel
@@ -25,8 +26,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         }
     }
 
+    override fun FragmentHomeBinding.setupObservers() {
+        observe(viewModel.jobPositionListLiveData) {
+            mJobListAdapter.submitList(it)
+        }
+    }
+
     override fun FragmentHomeBinding.onPreparationFinished() {
-        viewModel.getJobPositionList()
+        if (viewModel.jobPositionListLiveData.value.isNullOrEmpty()) {
+            viewModel.getJobPositionList()
+        }
     }
 
     companion object {

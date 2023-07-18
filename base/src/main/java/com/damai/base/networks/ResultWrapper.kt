@@ -1,6 +1,7 @@
 package com.damai.base.networks
 
 import com.damai.base.BaseModel
+import com.damai.base.utils.Constants.SUCCESS_CODE
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -22,7 +23,7 @@ internal suspend fun <T: BaseModel> safeApiCall(
         try {
             val call = apiCall.invoke()
             when (call?.status) {
-                200 -> ResultWrapper.Success(call)
+                SUCCESS_CODE -> ResultWrapper.Success(call)
                 else -> {
                     ResultWrapper.GenericError(
                         message = call?.message

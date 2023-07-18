@@ -5,7 +5,10 @@ package com.damai.dansmultipro.modules
  */
 
 val allModules = listOf(
+    mapperModule,
     networkModule,
     pageNavigationModule,
+    repositoryModule,
+    useCaseModule,
     viewModelModule
 )

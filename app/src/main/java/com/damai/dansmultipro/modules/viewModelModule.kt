@@ -11,6 +11,10 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel {
-        MainViewModel(app = androidApplication())
+        MainViewModel(
+            app = androidApplication(),
+            jobPositionListUseCase = get(),
+            dispatcher = get()
+        )
     }
 }
