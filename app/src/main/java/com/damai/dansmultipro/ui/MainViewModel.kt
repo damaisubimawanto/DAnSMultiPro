@@ -30,6 +30,7 @@ class MainViewModel(
 
     //region Variables
     var pagination = 1
+    var isPaginationContinue = true
     //endregion `Variables`
 
     fun getJobPositionList() {
@@ -47,7 +48,40 @@ class MainViewModel(
                         }
                     }
                     is Resource.Error -> {
+                        isPaginationContinue = false
+                    }
+                }
+            }
+        }
+    }
 
+    fun getJobPositionListByFilter(
+        keyword: String?,
+        location: String?,
+        isFullTime: Boolean?
+    ) {
+        viewModelScope.launch(dispatcher.io()) {
+            val request = JobPositionRequest(
+                keyword = keyword,
+                location = location,
+                isFullTime = isFullTime,
+                page = pagination
+            )
+
+            jobPositionListWithFilterUseCase(request).collect { resource ->
+                when (resource) {
+                    is Resource.Success -> {
+                        resource.model?.list?.let { response ->
+                            var tempData = _jobPositionListLiveData.value?.toMutableList()
+                            if (tempData == null) {
+                                tempData = mutableListOf()
+                            }
+                            tempData.addAll(response)
+                            _jobPositionListLiveData.postValue(tempData.toList())
+                        }
+                    }
+                    is Resource.Error -> {
+                        isPaginationContinue = false
                     }
                 }
             }

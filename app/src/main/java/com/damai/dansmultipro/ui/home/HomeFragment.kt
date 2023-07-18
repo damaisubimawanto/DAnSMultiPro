@@ -1,7 +1,11 @@
 package com.damai.dansmultipro.ui.home
 
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.damai.base.BaseFragment
 import com.damai.base.extensions.observe
+import com.damai.base.utils.EndlessScrollListener
+import com.damai.base.utils.MutableLazy
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.FragmentHomeBinding
 import com.damai.dansmultipro.ui.MainViewModel
@@ -15,6 +19,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     private lateinit var mJobListAdapter: JobListAdapter
 
+    private val _endlessScrollListenerDelegate = MutableLazy.resettableLazy {
+        val layoutManager = binding.rvJobList.layoutManager as LinearLayoutManager
+        object : EndlessScrollListener(
+            layoutManager = layoutManager,
+            visibleThreshold = 3
+        ) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                if (viewModel.isPaginationContinue) {
+                    viewModel.pagination = page
+                    viewModel.getJobPositionList()
+                }
+            }
+        }
+    }
+
+    private val mEndlessScrollListener: EndlessScrollListener by _endlessScrollListenerDelegate
+
     override val layoutResource: Int = R.layout.fragment_home
 
     override val viewModel: MainViewModel by activityViewModel()
@@ -23,6 +44,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         with(rvJobList) {
             mJobListAdapter = JobListAdapter()
             adapter = mJobListAdapter
+            clearOnScrollListeners()
+            /* The endless should be re-init */
+            _endlessScrollListenerDelegate.reset()
+            addOnScrollListener(mEndlessScrollListener)
         }
     }
 

@@ -8,7 +8,6 @@ import com.damai.data.apiservices.HomeService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.BuildConfig
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,11 +22,7 @@ val networkModule = module {
 
     single {
         val logging = HttpLoggingInterceptor()
-        logging.level = if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor.Level.BODY
-        } else {
-            HttpLoggingInterceptor.Level.NONE
-        }
+        logging.level = HttpLoggingInterceptor.Level.BODY
 
         OkHttpClient.Builder().apply{
             connectTimeout(TIMEOUT, TimeUnit.SECONDS)
