@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_job_detail">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.damai.dansmultipro.ui.jobdetail.JobDetailViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.jobDetailLiveData.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitleText"
+            tools:text="Android Developer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobFullTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fulltime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobFullTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.jobDetailLiveData.type}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobFullTimeText"
+            tools:text="Yes" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobDescriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobFullTime" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.jobDetailLiveData.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobDescriptionText"
+            tools:text="@tools:sample/lorem/random" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

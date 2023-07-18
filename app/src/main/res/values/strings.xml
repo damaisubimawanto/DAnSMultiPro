@@ -5,7 +5,11 @@
     <string name="job_detail_toolbar_title">Job Detail</string>
     <string name="search_result">Search Result</string>
     <string name="company">Company</string>
+    <string name="job_specification">Job Specification</string>
     <string name="go_to_website">Go to Website</string>
+    <string name="title">Title</string>
+    <string name="fulltime">Fulltime</string>
+    <string name="description">Description</string>
 
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_profile">Account</string>

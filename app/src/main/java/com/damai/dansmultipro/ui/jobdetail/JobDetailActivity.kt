@@ -25,14 +25,16 @@ class JobDetailActivity : BaseActivity<ActivityJobDetailBinding, JobDetailViewMo
                 viewModel.jobId = bundle.getString(ARGS_JOB_ID)
             }
         }
+        companyProfile.vm = viewModel
+        companyProfile.lifecycleOwner = this@JobDetailActivity
+
+        jobSpecification.vm = viewModel
+        jobSpecification.lifecycleOwner = this@JobDetailActivity
     }
 
     override fun ActivityJobDetailBinding.setupObservers() {
         observe(viewModel.jobDetailLiveData) {
             companyProfile.ivCompanyLogo.loadImageWithCenterCrop(url = it.companyLogo)
-
-            companyProfile.tvCompanyName.text = it.company
-            companyProfile.tvCompanyLocation.text = it.location
         }
 
         observe(viewModel.jobDetailErrorLiveData, EventObserver { errorMessage ->
