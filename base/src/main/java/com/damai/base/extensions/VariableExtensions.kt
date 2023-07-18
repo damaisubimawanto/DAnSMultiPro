@@ -9,6 +9,8 @@ import java.util.TimerTask
 
 fun Int?.orZero() = this ?: 0
 
+fun Boolean?.orFalse() = this ?: false
+
 fun Timer.scheduleAfter(
     delay: Long,
     process: () -> Unit

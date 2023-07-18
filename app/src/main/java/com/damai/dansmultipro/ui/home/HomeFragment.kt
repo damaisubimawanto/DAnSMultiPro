@@ -10,6 +10,7 @@ import com.damai.base.extensions.checkIfFragmentNotAttachToActivity
 import com.damai.base.extensions.observe
 import com.damai.base.extensions.orZero
 import com.damai.base.extensions.scheduleAfter
+import com.damai.base.extensions.setCustomOnClickListener
 import com.damai.base.utils.EndlessScrollListener
 import com.damai.base.utils.MutableLazy
 import com.damai.dansmultipro.R
@@ -91,12 +92,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
             fun doHitJobPositionListByFilter() {
                 requireActivity().runOnUiThread {
                     reset()
-                    viewModel.getJobPositionListByFilter(keyword = it)
+                    viewModel.getJobPositionListByFilter(keyword = it.trim())
                 }
             }
 
             mTimer?.cancel()
-            val textLength = it.length
+            val textLength = it.trim().length
 
             when {
                 textLength > 3 -> {
@@ -112,6 +113,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
                 }
             }
         }
+
+        rlSearchFilter.setOnClickListener {
+            viewModel.showHideTheFilterBox()
+        }
+
+        filterBox.switchFilter.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.filterFullTime = if (isChecked) true else null
+        }
+
+        filterBox.btnApplyFilter.setCustomOnClickListener {
+            viewModel.filterLocation = filterBox.etFilterLocation.text?.trim()?.toString()
+                ?.takeIf { it.isNotBlank() }
+
+            viewModel.getJobPositionListByFilter(
+                keyword = etSearch.text?.trim()?.toString()?.takeIf { it.isNotBlank() }
+            )
+        }
     }
 
     override fun FragmentHomeBinding.setupObservers() {
@@ -124,6 +142,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
             mJobListAdapter.submitList(it)
 
             tvSearchResultTitle.isVisible = etSearch.text?.length.orZero() != 0
+        }
+
+        observe(viewModel.isFilterBoxShown) { isShown ->
+            filterBox.clMainViewFilterBox.isVisible = isShown
+            ivSearchFilter.isVisible = !isShown
+            ivSearchFilterLess.isVisible = isShown
         }
     }
 

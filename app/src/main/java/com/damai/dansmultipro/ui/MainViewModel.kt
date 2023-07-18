@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.damai.base.BaseViewModel
 import com.damai.base.coroutines.DispatcherProvider
 import com.damai.base.extensions.asLiveData
+import com.damai.base.extensions.orFalse
 import com.damai.base.networks.Resource
 import com.damai.domain.models.JobPositionModel
 import com.damai.domain.models.JobPositionRequest
@@ -26,6 +27,9 @@ class MainViewModel(
     //region Live Data
     private val _jobPositionListLiveData = MutableLiveData<List<JobPositionModel>>()
     val jobPositionListLiveData = _jobPositionListLiveData.asLiveData()
+
+    private val _isFilterBoxShown = MutableLiveData(false)
+    val isFilterBoxShown = _isFilterBoxShown.asLiveData()
     //endregion `Live Data`
 
     //region Variables
@@ -87,5 +91,11 @@ class MainViewModel(
                 }
             }
         }
+    }
+
+    fun showHideTheFilterBox() {
+        (_isFilterBoxShown.value.orFalse().not()).let(
+            _isFilterBoxShown::setValue
+        )
     }
 }

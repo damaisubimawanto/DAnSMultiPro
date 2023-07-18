@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="RtlSymmetry"
+    tools:showIn="@layout/fragment_home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMainViewFilterBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_12"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFilterFullTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fulltime"
+            app:layout_constraintBottom_toBottomOf="@+id/switchFilter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/switchFilter" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFilterLocationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/dimen_50"
+            android:text="@string/location"
+            app:layout_constraintBottom_toBottomOf="@+id/etFilterLocation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etFilterLocation" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etFilterLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:maxLength="20"
+            android:maxLines="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchFilter"
+            app:layout_constraintStart_toEndOf="@+id/tvFilterLocationText" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApplyFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_apply_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFilterLocation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
