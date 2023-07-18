@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "${rootProject.rootDir}/dependencies.gradle"
+
+android {
+    namespace 'com.damai.dansmultipro'
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        applicationId "com.damai.dansmultipro"
+        minSdk min_sdk_version
+        targetSdk compile_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':base')
+    implementation project(':data')
+    implementation project(':domain')
+
+    testImplementation test_library.androidx_core_test
+    testImplementation test_library.androidx_test_espresso
+    testImplementation test_library.androidx_test_extension
+    testImplementation test_library.androidx_test_extension_ktx
+    testImplementation test_library.androidx_test_runner
+    testImplementation test_library.assertj_core
+    testImplementation test_library.junit_core
+    testImplementation test_library.junit_jupiter
+    testImplementation test_library.kotlinx_coroutines_test
+    testImplementation test_library.livedata_test
+    testImplementation test_library.mock
+    testImplementation test_library.mock_webserver
+    testImplementation test_library.robolectric
+
+    testRuntimeOnly test_library.junit_vintage_engine
+}
