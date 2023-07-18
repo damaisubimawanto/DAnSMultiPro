@@ -25,3 +25,7 @@ fun <T> Fragment.observe(
 ) {
     with(viewLifecycleOwner) { liveData.observe(this, observer) }
 }
+
+fun Fragment.checkIfFragmentNotAttachToActivity(): Boolean {
+    return !isAdded || isDetached || context == null || activity == null
+}

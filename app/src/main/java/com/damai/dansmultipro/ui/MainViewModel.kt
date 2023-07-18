@@ -30,6 +30,7 @@ class MainViewModel(
 
     //region Variables
     var pagination = 1
+    var isResetList = false
     var isPaginationContinue = true
     var filterLocation: String? = null
     var filterFullTime: Boolean? = null
