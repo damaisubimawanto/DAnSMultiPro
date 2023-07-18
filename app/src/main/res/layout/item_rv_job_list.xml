@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_8">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCompanyLogo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:srcCompat="@tools:sample/avatars"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintWidth_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivArrowRight"
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_ios_right" />
+
+        <Space
+            android:id="@+id/spaceBetweenLogoAndTitle"
+            android:layout_width="@dimen/dimen_4"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/ivCompanyLogo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvJobTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/ivArrowRight"
+            app:layout_constraintStart_toEndOf="@+id/spaceBetweenLogoAndTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Android Developer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/ivArrowRight"
+            app:layout_constraintStart_toEndOf="@+id/spaceBetweenLogoAndTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvJobTitle"
+            tools:text="Google Indonesia" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCompanyLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/ivArrowRight"
+            app:layout_constraintStart_toEndOf="@+id/spaceBetweenLogoAndTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvCompanyName"
+            tools:text="Jakarta, Indonesia" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
