@@ -1,6 +1,7 @@
 package com.damai.dansmultipro.ui.home
 
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.damai.base.BaseFragment
@@ -121,6 +122,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
                 mEndlessScrollListener.resetScrolling()
             }
             mJobListAdapter.submitList(it)
+
+            tvSearchResultTitle.isVisible = etSearch.text?.length.orZero() != 0
         }
     }
 
