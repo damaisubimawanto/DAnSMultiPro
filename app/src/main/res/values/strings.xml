@@ -3,4 +3,7 @@
 
     <string name="main_toolbar_title">Job List</string>
     <string name="search_result">Search Result</string>
+
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_profile">Profile</string>
 </resources>

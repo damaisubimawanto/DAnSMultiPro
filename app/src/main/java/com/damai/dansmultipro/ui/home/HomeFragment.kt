@@ -19,7 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
     override val viewModel: MainViewModel by activityViewModel()
 
     override fun FragmentHomeBinding.viewInitialization() {
-        with (rvJobList) {
+        with(rvJobList) {
             mJobListAdapter = JobListAdapter()
             adapter = mJobListAdapter
         }
@@ -27,5 +27,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     override fun FragmentHomeBinding.onPreparationFinished() {
         viewModel.getJobPositionList()
+    }
+
+    companion object {
+        const val TAG = "HomeFragment"
+
+        fun newInstance() = HomeFragment()
     }
 }
