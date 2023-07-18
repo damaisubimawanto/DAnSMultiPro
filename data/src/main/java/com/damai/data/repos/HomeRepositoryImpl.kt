@@ -30,7 +30,7 @@ class HomeRepositoryImpl(
             override suspend fun remoteFetch(): JobPositionListModel {
                 val response = homeService.getJobPositionList(requestModel.page)
                 return JobPositionListModel(
-                    list = response.map {
+                    list = response.filterNotNull().map {
                         jobPositionResponseMapper.map(it)
                     }
                 ).also {

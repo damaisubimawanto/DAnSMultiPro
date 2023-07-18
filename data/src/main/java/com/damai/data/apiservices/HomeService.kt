@@ -12,5 +12,5 @@ interface HomeService {
     @GET("/api/recruitment/positions.json")
     suspend fun getJobPositionList(
         @Query("page") page: Int
-    ): List<JobPositionResponse>
+    ): List<JobPositionResponse?>
 }
