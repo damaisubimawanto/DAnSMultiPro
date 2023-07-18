@@ -87,6 +87,10 @@ class MainViewModel(
                     }
                     is Resource.Error -> {
                         isPaginationContinue = false
+                        if (_jobPositionListLiveData.value.isNullOrEmpty()) {
+                            isResetList = true
+                            _jobPositionListLiveData.postValue(listOf())
+                        }
                     }
                 }
             }
@@ -97,5 +101,9 @@ class MainViewModel(
         (_isFilterBoxShown.value.orFalse().not()).let(
             _isFilterBoxShown::setValue
         )
+    }
+
+    fun resetList() {
+        _jobPositionListLiveData.postValue(listOf())
     }
 }

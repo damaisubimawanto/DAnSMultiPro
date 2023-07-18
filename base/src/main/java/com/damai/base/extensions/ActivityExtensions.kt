@@ -1,5 +1,7 @@
 package com.damai.base.extensions
 
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
@@ -27,4 +29,11 @@ fun <T> FragmentActivity.observe(
 
 fun FragmentActivity.showToastMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun FragmentActivity?.hideKeyboard() {
+    this?.currentFocus?.let { view ->
+        val inputMethodManager = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

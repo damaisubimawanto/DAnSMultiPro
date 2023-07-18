@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.damai.base.BaseFragment
 import com.damai.base.extensions.addOnTextChanged
 import com.damai.base.extensions.checkIfFragmentNotAttachToActivity
+import com.damai.base.extensions.hideKeyboard
 import com.damai.base.extensions.observe
 import com.damai.base.extensions.orZero
 import com.damai.base.extensions.scheduleAfter
@@ -83,11 +84,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
     }
 
     override fun FragmentHomeBinding.setupListeners() {
-        fun reset() {
-            viewModel.isResetList = true
-            viewModel.pagination = 1
-        }
-
         etSearch.addOnTextChanged {
             fun doHitJobPositionListByFilter() {
                 requireActivity().runOnUiThread {
@@ -109,9 +105,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
                 textLength == 0 -> {
                     reset()
-                    viewModel.getJobPositionList()
+                    if (viewModel.filterFullTime == true ||
+                        viewModel.filterLocation?.isNotBlank() == true) {
+                        viewModel.getJobPositionListByFilter(keyword = null)
+                    } else {
+                        viewModel.getJobPositionList()
+                    }
                 }
             }
+        }
+
+        filterBox.etFilterLocation.addOnTextChanged { locationText ->
+            viewModel.filterLocation = locationText.trim().takeIf { it.isNotEmpty() }
         }
 
         rlSearchFilter.setOnClickListener {
@@ -123,12 +128,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         }
 
         filterBox.btnApplyFilter.setCustomOnClickListener {
-            viewModel.filterLocation = filterBox.etFilterLocation.text?.trim()?.toString()
-                ?.takeIf { it.isNotBlank() }
-
+            reset()
             viewModel.getJobPositionListByFilter(
-                keyword = etSearch.text?.trim()?.toString()?.takeIf { it.isNotBlank() }
+                keyword = etSearch.text?.trim()?.toString()?.takeIf { it.isNotEmpty() }
             )
+            activity.hideKeyboard()
         }
     }
 
@@ -155,6 +159,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         if (viewModel.jobPositionListLiveData.value.isNullOrEmpty()) {
             viewModel.getJobPositionList()
         }
+    }
+
+    private fun reset() {
+        viewModel.isResetList = true
+        viewModel.pagination = 1
+        viewModel.resetList()
     }
 
     companion object {
