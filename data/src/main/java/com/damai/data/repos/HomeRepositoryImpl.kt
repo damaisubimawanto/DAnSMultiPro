@@ -8,7 +8,6 @@ import com.damai.base.utils.Constants.SUCCESS_MESSAGE
 import com.damai.data.apiservices.HomeService
 import com.damai.data.mappers.JobPositionResponseToJobPositionModelMapper
 import com.damai.domain.models.JobPositionListModel
-import com.damai.domain.models.JobPositionRequest
 import com.damai.domain.repositories.HomeRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -22,13 +21,21 @@ class HomeRepositoryImpl(
 ) : HomeRepository {
 
     override fun getJobPositionList(
-        requestModel: JobPositionRequest
+        page: Int,
+        description: String?,
+        location: String?,
+        isFullTime: Boolean?
     ): Flow<Resource<JobPositionListModel>> {
         return object : NetworkResource<JobPositionListModel>(
             dispatcherProvider = dispatcher
         ) {
             override suspend fun remoteFetch(): JobPositionListModel {
-                val response = homeService.getJobPositionList(requestModel.page)
+                val response = homeService.getJobPositionList(
+                    page = page,
+                    description = description,
+                    location = location,
+                    fullTime = isFullTime
+                )
                 return JobPositionListModel(
                     list = response.filterNotNull().map {
                         jobPositionResponseMapper.map(it)

@@ -1,4 +1,4 @@
-package com.damai.dansmultipro.ui.home
+package com.damai.dansmultipro.ui.profile
 
 import com.damai.base.BaseFragment
 import com.damai.dansmultipro.R

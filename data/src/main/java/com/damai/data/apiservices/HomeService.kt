@@ -11,6 +11,9 @@ interface HomeService {
 
     @GET("/api/recruitment/positions.json")
     suspend fun getJobPositionList(
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("description") description: String?,
+        @Query("location") location: String?,
+        @Query("full_time") fullTime: Boolean?
     ): List<JobPositionResponse?>
 }

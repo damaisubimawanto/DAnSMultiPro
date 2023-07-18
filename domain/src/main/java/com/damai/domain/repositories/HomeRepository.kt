@@ -12,6 +12,9 @@ interface HomeRepository {
 
     @Throws(Exception::class)
     fun getJobPositionList(
-        requestModel: JobPositionRequest
+        page: Int,
+        description: String? = null,
+        location: String? = null,
+        isFullTime: Boolean? = null
     ): Flow<Resource<JobPositionListModel>>
 }

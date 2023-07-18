@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.Flow
  */
 class JobPositionListUseCase(
     private val homeRepository: HomeRepository
-) : FlowUseCase<JobPositionRequest, JobPositionListModel>() {
+) : FlowUseCase<Int, JobPositionListModel>() {
 
-    override suspend fun execute(parameters: JobPositionRequest?): Flow<Resource<JobPositionListModel>> {
-        return homeRepository.getJobPositionList(requireNotNull(parameters))
+    override suspend fun execute(parameters: Int?): Flow<Resource<JobPositionListModel>> {
+        return homeRepository.getJobPositionList(page = requireNotNull(parameters))
     }
 }

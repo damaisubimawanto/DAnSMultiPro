@@ -6,7 +6,7 @@ import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.ActivityMainBinding
 import com.damai.dansmultipro.navigation.PageNavigationApi
 import com.damai.dansmultipro.ui.home.HomeFragment
-import com.damai.dansmultipro.ui.home.ProfileFragment
+import com.damai.dansmultipro.ui.profile.ProfileFragment
 import com.google.android.material.navigation.NavigationBarView
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

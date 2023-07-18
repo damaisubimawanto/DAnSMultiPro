@@ -14,6 +14,7 @@ val viewModelModule = module {
         MainViewModel(
             app = androidApplication(),
             jobPositionListUseCase = get(),
+            jobPositionListWithFilterUseCase = get(),
             dispatcher = get()
         )
     }

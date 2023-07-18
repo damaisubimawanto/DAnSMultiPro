@@ -10,6 +10,7 @@ import com.damai.base.networks.Resource
 import com.damai.domain.models.JobPositionModel
 import com.damai.domain.models.JobPositionRequest
 import com.damai.domain.usecases.JobPositionListUseCase
+import com.damai.domain.usecases.JobPositionListWithFilterUseCase
 import kotlinx.coroutines.launch
 
 /**
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
 class MainViewModel(
     app: Application,
     private val jobPositionListUseCase: JobPositionListUseCase,
+    private val jobPositionListWithFilterUseCase: JobPositionListWithFilterUseCase,
     private val dispatcher: DispatcherProvider
 ) : BaseViewModel(app = app) {
 
@@ -26,12 +28,13 @@ class MainViewModel(
     val jobPositionListLiveData = _jobPositionListLiveData.asLiveData()
     //endregion `Live Data`
 
+    //region Variables
+    var pagination = 1
+    //endregion `Variables`
+
     fun getJobPositionList() {
         viewModelScope.launch(dispatcher.io()) {
-            val requestBody = JobPositionRequest(
-                page = 1
-            )
-            jobPositionListUseCase(requestBody).collect { resource ->
+            jobPositionListUseCase(pagination).collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
                         resource.model?.list?.let { response ->
