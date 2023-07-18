@@ -38,9 +38,8 @@ class JobListAdapter(
             with(binding) {
                 ivCompanyLogo.loadImageWithCenterCrop(url = data.companyLogo)
 
-                tvJobTitle.text = data.title
-                tvCompanyName.text = data.company
-                tvCompanyLocation.text = data.location
+                model = data
+                executePendingBindings()
 
                 clMainView.setCustomOnClickListener {
                     callback.invoke(data)
