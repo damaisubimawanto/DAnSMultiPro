@@ -1,5 +1,8 @@
 package com.damai.dansmultipro.navigation
 
+import android.content.Context
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -19,5 +22,11 @@ interface PageNavigationApi {
     fun navigateToHomeFragment(
         fragmentActivity: FragmentActivity,
         @IdRes container: Int
+    )
+
+    fun navigateToJobDetailActivity(
+        context: Context,
+        launcher: ActivityResultLauncher<Intent>,
+        jobId: String
     )
 }

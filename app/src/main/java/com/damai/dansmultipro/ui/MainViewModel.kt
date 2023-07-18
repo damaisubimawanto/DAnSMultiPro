@@ -31,6 +31,8 @@ class MainViewModel(
     //region Variables
     var pagination = 1
     var isPaginationContinue = true
+    var filterLocation: String? = null
+    var filterFullTime: Boolean? = null
     //endregion `Variables`
 
     fun getJobPositionList() {
@@ -56,15 +58,13 @@ class MainViewModel(
     }
 
     fun getJobPositionListByFilter(
-        keyword: String?,
-        location: String?,
-        isFullTime: Boolean?
+        keyword: String?
     ) {
         viewModelScope.launch(dispatcher.io()) {
             val request = JobPositionRequest(
                 keyword = keyword,
-                location = location,
-                isFullTime = isFullTime,
+                location = filterLocation,
+                isFullTime = filterFullTime,
                 page = pagination
             )
 

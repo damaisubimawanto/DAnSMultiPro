@@ -9,4 +9,6 @@ object Constants {
     const val TIMEOUT = 60L
     const val SUCCESS_CODE = 200
     const val SUCCESS_MESSAGE = "Success"
+
+    const val ARGS_JOB_ID = "argsJobId"
 }

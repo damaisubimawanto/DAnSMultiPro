@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.damai.base.BaseListAdapter
 import com.damai.base.BaseViewHolder
 import com.damai.base.extensions.loadImageWithCenterCrop
+import com.damai.base.extensions.setCustomOnClickListener
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.ItemRvJobListBinding
 import com.damai.domain.models.JobPositionModel
@@ -13,7 +14,9 @@ import com.damai.domain.models.JobPositionModel
 /**
  * Created by damai007 on 18/July/2023
  */
-class JobListAdapter : BaseListAdapter<ItemRvJobListBinding, JobPositionModel>(
+class JobListAdapter(
+    private val callback: (JobPositionModel) -> Unit
+) : BaseListAdapter<ItemRvJobListBinding, JobPositionModel>(
     diffUtil = JobComparator
 ) {
 
@@ -38,6 +41,10 @@ class JobListAdapter : BaseListAdapter<ItemRvJobListBinding, JobPositionModel>(
                 tvJobTitle.text = data.title
                 tvCompanyName.text = data.company
                 tvCompanyLocation.text = data.location
+
+                clMainView.setCustomOnClickListener {
+                    callback.invoke(data)
+                }
             }
         }
     }

@@ -2,6 +2,7 @@ package com.damai.data.apiservices
 
 import com.damai.data.responses.JobPositionResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -16,4 +17,9 @@ interface HomeService {
         @Query("location") location: String?,
         @Query("full_time") fullTime: Boolean?
     ): List<JobPositionResponse?>
+
+    @GET("/api/recruitment/positions/{jobId}")
+    suspend fun getJobDetail(
+        @Path("jobId") jobId: String
+    ): JobPositionResponse
 }

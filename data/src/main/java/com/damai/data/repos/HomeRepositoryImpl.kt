@@ -7,6 +7,7 @@ import com.damai.base.utils.Constants.SUCCESS_CODE
 import com.damai.base.utils.Constants.SUCCESS_MESSAGE
 import com.damai.data.apiservices.HomeService
 import com.damai.data.mappers.JobPositionResponseToJobPositionModelMapper
+import com.damai.domain.models.JobDetailModel
 import com.damai.domain.models.JobPositionListModel
 import com.damai.domain.repositories.HomeRepository
 import kotlinx.coroutines.flow.Flow
@@ -40,6 +41,22 @@ class HomeRepositoryImpl(
                     list = response.filterNotNull().map {
                         jobPositionResponseMapper.map(it)
                     }
+                ).also {
+                    it.status = SUCCESS_CODE
+                    it.message = SUCCESS_MESSAGE
+                }
+            }
+        }.asFlow()
+    }
+
+    override fun getJobDetail(jobId: String): Flow<Resource<JobDetailModel>> {
+        return object : NetworkResource<JobDetailModel>(
+            dispatcherProvider = dispatcher
+        ) {
+            override suspend fun remoteFetch(): JobDetailModel {
+                val response = homeService.getJobDetail(jobId = jobId)
+                return JobDetailModel(
+                    jobPositionModel = jobPositionResponseMapper.map(response)
                 ).also {
                     it.status = SUCCESS_CODE
                     it.message = SUCCESS_MESSAGE

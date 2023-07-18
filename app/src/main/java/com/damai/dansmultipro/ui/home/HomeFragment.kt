@@ -1,5 +1,6 @@
 package com.damai.dansmultipro.ui.home
 
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.damai.base.BaseFragment
@@ -8,8 +9,10 @@ import com.damai.base.utils.EndlessScrollListener
 import com.damai.base.utils.MutableLazy
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.FragmentHomeBinding
+import com.damai.dansmultipro.navigation.PageNavigationApi
 import com.damai.dansmultipro.ui.MainViewModel
 import com.damai.dansmultipro.ui.home.adapter.JobListAdapter
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 /**
@@ -36,13 +39,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     private val mEndlessScrollListener: EndlessScrollListener by _endlessScrollListenerDelegate
 
+    private val activityLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+
+        }
+
+    private val pageNavigationApi: PageNavigationApi by inject()
+
     override val layoutResource: Int = R.layout.fragment_home
 
     override val viewModel: MainViewModel by activityViewModel()
 
     override fun FragmentHomeBinding.viewInitialization() {
         with(rvJobList) {
-            mJobListAdapter = JobListAdapter()
+            mJobListAdapter = JobListAdapter {
+                pageNavigationApi.navigateToJobDetailActivity(
+                    context = requireContext(),
+                    launcher = activityLauncher,
+                    jobId = it.id
+                )
+            }
             adapter = mJobListAdapter
             clearOnScrollListeners()
             /* The endless should be re-init */

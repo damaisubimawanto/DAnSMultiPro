@@ -2,7 +2,10 @@
     <string name="app_name">DansMultiPro</string>
 
     <string name="main_toolbar_title">Job List</string>
+    <string name="job_detail_toolbar_title">Job Detail</string>
     <string name="search_result">Search Result</string>
+    <string name="company">Company</string>
+    <string name="go_to_website">Go to Website</string>
 
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_profile">Account</string>

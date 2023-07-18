@@ -1,5 +1,6 @@
 package com.damai.dansmultipro.modules
 
+import com.damai.domain.usecases.JobDetailUseCase
 import com.damai.domain.usecases.JobPositionListUseCase
 import com.damai.domain.usecases.JobPositionListWithFilterUseCase
 import org.koin.dsl.module
@@ -17,6 +18,12 @@ val useCaseModule = module {
 
     single {
         JobPositionListWithFilterUseCase(
+            homeRepository = get()
+        )
+    }
+
+    single {
+        JobDetailUseCase(
             homeRepository = get()
         )
     }

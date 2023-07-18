@@ -1,5 +1,6 @@
 package com.damai.base.extensions
 
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import com.damai.base.utils.Event
@@ -22,4 +23,8 @@ fun <T> FragmentActivity.observe(
     observer: EventObserver<T>
 ) {
     liveData.observe(this, observer)
+}
+
+fun FragmentActivity.showToastMessage(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
