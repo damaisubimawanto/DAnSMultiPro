@@ -1,6 +1,7 @@
 package com.damai.dansmultipro.ui
 
 import android.view.MenuItem
+import androidx.activity.addCallback
 import com.damai.base.BaseActivity
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.ActivityMainBinding
@@ -31,6 +32,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         }
     }
 
+    override fun ActivityMainBinding.setupListeners() {
+        this@MainActivity.onBackPressedDispatcher.addCallback {
+            handleCustomBackPressed()
+        }
+    }
+
     /**
      * Callback from NavigationBarView.OnItemSelectedListener.
      */
@@ -56,6 +63,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
                     tag = HomeFragment.TAG
                 )
                 true
+            }
+        }
+    }
+
+    private fun handleCustomBackPressed() {
+        with(binding) {
+            when (bottomNavigationView.selectedItemId) {
+                R.id.navigation_profile -> {
+                    bottomNavigationView.selectedItemId = R.id.navigation_home
+                }
+                else -> finish()
             }
         }
     }
