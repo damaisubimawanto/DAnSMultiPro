@@ -18,6 +18,7 @@ interface HomeRepository {
         isFullTime: Boolean? = null
     ): Flow<Resource<JobPositionListModel>>
 
+    @Throws(Exception::class)
     fun getJobDetail(
         jobId: String
     ): Flow<Resource<JobDetailModel>>
