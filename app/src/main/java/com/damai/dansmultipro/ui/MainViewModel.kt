@@ -8,6 +8,7 @@ import com.damai.base.coroutines.DispatcherProvider
 import com.damai.base.extensions.asLiveData
 import com.damai.base.extensions.orFalse
 import com.damai.base.networks.Resource
+import com.damai.domain.models.AccountModel
 import com.damai.domain.models.JobPositionModel
 import com.damai.domain.models.JobPositionRequest
 import com.damai.domain.usecases.JobPositionListUseCase
@@ -30,6 +31,9 @@ class MainViewModel(
 
     private val _isFilterBoxShown = MutableLiveData(false)
     val isFilterBoxShown = _isFilterBoxShown.asLiveData()
+
+    private val _accountModelLiveData = MutableLiveData<AccountModel>()
+    val accountModelLiveData = _accountModelLiveData.asLiveData()
     //endregion `Live Data`
 
     //region Variables
@@ -105,5 +109,12 @@ class MainViewModel(
 
     fun resetList() {
         _jobPositionListLiveData.postValue(listOf())
+    }
+
+    fun dummyAccount() {
+        AccountModel(
+            name = "Damai Subimawanto",
+            photoProfile = "https://pbs.twimg.com/profile_images/1532963504721866753/0Cwg3Enx_400x400.jpg"
+        ).let(_accountModelLiveData::setValue)
     }
 }

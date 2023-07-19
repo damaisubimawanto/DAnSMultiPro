@@ -1,6 +1,7 @@
 package com.damai.dansmultipro.ui.profile
 
 import com.damai.base.BaseFragment
+import com.damai.base.extensions.setCustomOnClickListener
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.FragmentProfileBinding
 import com.damai.dansmultipro.ui.MainViewModel
@@ -19,5 +20,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, MainViewModel>() {
         const val TAG = "ProfileFragment"
 
         fun newInstance() = ProfileFragment()
+    }
+
+    override fun FragmentProfileBinding.viewInitialization() {
+        vm = viewModel
+        lifecycleOwner = this@ProfileFragment
+    }
+
+    override fun FragmentProfileBinding.setupListeners() {
+        btnLogout.setCustomOnClickListener {
+            // TODO: Log out the account preferences
+        }
+    }
+
+    override fun FragmentProfileBinding.onPreparationFinished() {
+        if (viewModel.accountModelLiveData.value == null) {
+            viewModel.dummyAccount()
+        }
     }
 }

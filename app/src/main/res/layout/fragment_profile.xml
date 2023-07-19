@@ -1,11 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.damai.base.bindingadapters.ViewBindingAdapter" />
+
+        <variable
+            name="vm"
+            type="com.damai.dansmultipro.ui.MainViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/bottom_nav_profile"
+                    android:textAppearance="@style/ToolbarTitle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <Space
+            android:id="@+id/spaceBetweenToolbarAndPhotoProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPhotoProfile"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spaceBetweenToolbarAndPhotoProfile"
+            app:layout_constraintWidth_percent="0.4"
+            app:loadImageCircle="@{vm.accountModelLiveData.photoProfile}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen_24"
+            android:paddingTop="@dimen/dimen_16"
+            android:text="@{vm.accountModelLiveData.name}"
+            android:textAppearance="@style/ProfileName"
+            app:layout_constraintEnd_toStartOf="@+id/guidelinePaddingRight"
+            app:layout_constraintStart_toEndOf="@+id/guidelinePaddingLeft"
+            app:layout_constraintTop_toBottomOf="@+id/ivPhotoProfile"
+            tools:text="John Doe" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_logout"
+            android:textAppearance="@style/ProfileButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinePaddingLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dimen_16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinePaddingRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dimen_16" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

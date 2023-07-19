@@ -13,6 +13,7 @@
     <string name="location">Location</string>
 
     <string name="button_apply_filter">Apply Filter</string>
+    <string name="button_logout">Logout</string>
 
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_profile">Account</string>

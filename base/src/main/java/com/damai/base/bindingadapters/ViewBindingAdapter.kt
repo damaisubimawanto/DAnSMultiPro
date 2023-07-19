@@ -7,6 +7,7 @@ import androidx.core.text.HtmlCompat.FROM_HTML_MODE_COMPACT
 import androidx.databinding.BindingAdapter
 import com.damai.base.R
 import com.damai.base.extensions.loadImageWithCenterCrop
+import com.damai.base.extensions.loadImageWithCircleCrop
 
 /**
  * Created by damai007 on 19/July/2023
@@ -17,6 +18,12 @@ object ViewBindingAdapter {
     @BindingAdapter("loadImage")
     fun bindLoadImage(view: AppCompatImageView, url: String?) {
         view.loadImageWithCenterCrop(url = url)
+    }
+
+    @JvmStatic
+    @BindingAdapter("loadImageCircle")
+    fun bindLoadImageCircle(view: AppCompatImageView, url: String?) {
+        view.loadImageWithCircleCrop(url = url)
     }
 
     @JvmStatic
