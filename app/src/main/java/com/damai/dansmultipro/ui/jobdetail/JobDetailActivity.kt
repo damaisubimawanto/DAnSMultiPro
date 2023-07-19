@@ -1,7 +1,6 @@
 package com.damai.dansmultipro.ui.jobdetail
 
 import com.damai.base.BaseActivity
-import com.damai.base.extensions.loadImageWithCenterCrop
 import com.damai.base.extensions.observe
 import com.damai.base.extensions.showToastMessage
 import com.damai.base.utils.Constants.ARGS_JOB_ID
@@ -33,10 +32,6 @@ class JobDetailActivity : BaseActivity<ActivityJobDetailBinding, JobDetailViewMo
     }
 
     override fun ActivityJobDetailBinding.setupObservers() {
-        observe(viewModel.jobDetailLiveData) {
-            companyProfile.ivCompanyLogo.loadImageWithCenterCrop(url = it.companyLogo)
-        }
-
         observe(viewModel.jobDetailErrorLiveData, EventObserver { errorMessage ->
             if (errorMessage.isNotBlank()) {
                 showToastMessage(message = errorMessage)

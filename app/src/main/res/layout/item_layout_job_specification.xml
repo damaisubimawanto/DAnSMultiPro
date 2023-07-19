@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="com.damai.base.bindingadapters.ViewBindingAdapter" />
+
         <variable
             name="vm"
             type="com.damai.dansmultipro.ui.jobdetail.JobDetailViewModel" />
@@ -76,11 +78,11 @@
             android:id="@+id/tvJobDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{vm.jobDetailLiveData.description}"
             android:textAppearance="@style/JobDetailSectionValue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvJobDescriptionText"
+            app:renderHtml="@{vm.jobDetailLiveData.description}"
             tools:text="@tools:sample/lorem/random" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
