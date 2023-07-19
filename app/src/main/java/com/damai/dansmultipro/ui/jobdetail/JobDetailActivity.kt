@@ -40,6 +40,12 @@ class JobDetailActivity : BaseActivity<ActivityJobDetailBinding, JobDetailViewMo
         })
     }
 
+    override fun ActivityJobDetailBinding.setupListeners() {
+        toolbar.setNavigationOnClickListener {
+            finish()
+        }
+    }
+
     override fun ActivityJobDetailBinding.onPreparationFinished() {
         if (viewModel.jobDetailLiveData.value == null) {
             viewModel.getJobDetail()
