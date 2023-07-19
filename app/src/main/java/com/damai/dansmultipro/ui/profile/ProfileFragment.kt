@@ -2,6 +2,7 @@ package com.damai.dansmultipro.ui.profile
 
 import com.damai.base.BaseFragment
 import com.damai.base.extensions.setCustomOnClickListener
+import com.damai.base.extensions.showToastMessage
 import com.damai.dansmultipro.R
 import com.damai.dansmultipro.databinding.FragmentProfileBinding
 import com.damai.dansmultipro.ui.MainViewModel
@@ -30,6 +31,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, MainViewModel>() {
     override fun FragmentProfileBinding.setupListeners() {
         btnLogout.setCustomOnClickListener {
             // TODO: Log out the account preferences
+            requireActivity().showToastMessage(
+                message = getString(R.string.under_development_message)
+            )
         }
     }
 

@@ -19,4 +19,6 @@
     <string name="bottom_nav_profile">Account</string>
 
     <string name="hint_search">Search</string>
+
+    <string name="under_development_message">Under Development!</string>
 </resources>
