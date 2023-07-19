@@ -69,6 +69,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
     override fun FragmentHomeBinding.viewInitialization() {
         with(rvJobList) {
             mJobListAdapter = JobListAdapter {
+                activity.hideKeyboard()
                 pageNavigationApi.navigateToJobDetailActivity(
                     context = requireContext(),
                     launcher = activityLauncher,
