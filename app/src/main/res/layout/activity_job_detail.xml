@@ -25,6 +25,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/job_detail_toolbar_title"
+                    android:textAppearance="@style/ToolbarTitle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -46,12 +47,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_8"
+                android:paddingEnd="@dimen/dimen_8"
+                android:paddingStart="@dimen/dimen_8">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/company" />
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:text="@string/company"
+                    android:textAppearance="@style/JobDetailSection" />
 
                 <include
                     android:id="@+id/companyProfile"
@@ -60,7 +66,10 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/job_specification" />
+                    android:paddingBottom="@dimen/dimen_8"
+                    android:paddingTop="@dimen/dimen_24"
+                    android:text="@string/job_specification"
+                    android:textAppearance="@style/JobDetailSection" />
 
                 <include
                     android:id="@+id/jobSpecification"

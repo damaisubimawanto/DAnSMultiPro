@@ -16,4 +16,6 @@
 
     <string name="bottom_nav_home">Home</string>
     <string name="bottom_nav_profile">Account</string>
+
+    <string name="hint_search">Search</string>
 </resources>

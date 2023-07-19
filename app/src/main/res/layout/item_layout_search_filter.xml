@@ -9,7 +9,10 @@
         android:id="@+id/clMainViewFilterBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_12"
+        android:paddingBottom="@dimen/dimen_4"
+        android:paddingEnd="@dimen/dimen_12"
+        android:paddingStart="@dimen/dimen_12"
+        android:paddingTop="@dimen/dimen_8"
         android:visibility="gone"
         tools:visibility="visible">
 
@@ -18,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fulltime"
+            android:textAppearance="@style/SearchFilterName"
             app:layout_constraintBottom_toBottomOf="@+id/switchFilter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/switchFilter" />
@@ -35,6 +39,7 @@
             android:layout_height="wrap_content"
             android:paddingEnd="@dimen/dimen_50"
             android:text="@string/location"
+            android:textAppearance="@style/SearchFilterName"
             app:layout_constraintBottom_toBottomOf="@+id/etFilterLocation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/etFilterLocation" />
@@ -43,11 +48,17 @@
             android:id="@+id/etFilterLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/custom_shape_location_box"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLength="20"
             android:maxLines="1"
+            android:paddingBottom="@dimen/dimen_4"
+            android:paddingEnd="@dimen/dimen_8"
+            android:paddingStart="@dimen/dimen_8"
+            android:paddingTop="@dimen/dimen_4"
             android:singleLine="true"
+            android:textAppearance="@style/SearchBarLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switchFilter"
             app:layout_constraintStart_toEndOf="@+id/tvFilterLocationText" />

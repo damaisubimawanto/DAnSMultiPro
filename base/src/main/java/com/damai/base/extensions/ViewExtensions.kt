@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
+import com.damai.base.R
 import com.damai.base.glides.GlideApp
 
 /**
@@ -50,5 +51,6 @@ fun AppCompatImageView.loadImageWithCenterCrop(
     GlideApp.with(context)
         .load(url)
         .centerCrop()
+        .error(R.drawable.ic_broken_image_48px)
         .into(this)
 }

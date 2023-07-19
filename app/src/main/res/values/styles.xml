@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ToolbarTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SearchBar" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="SearchBarLocation" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="SearchFilterName" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="JobItemTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="JobItemCompany" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+    <style name="JobItemCompanyWebsite" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+    <style name="JobDetailSection" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="JobDetailSectionTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+    <style name="JobDetailSectionValue" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_14</item>
+    </style>
+
+</resources>
