@@ -34,6 +34,9 @@ class MainViewModel(
 
     private val _accountModelLiveData = MutableLiveData<AccountModel>()
     val accountModelLiveData = _accountModelLiveData.asLiveData()
+
+    private val _isLoadMoreVisibility = MutableLiveData(true)
+    val isLoadMoreVisibility = _isLoadMoreVisibility.asLiveData()
     //endregion `Live Data`
 
     //region Variables
@@ -56,10 +59,12 @@ class MainViewModel(
                             }
                             tempData.addAll(response)
                             _jobPositionListLiveData.postValue(tempData.toList())
+                            _isLoadMoreVisibility.postValue(true)
                         }
                     }
                     is Resource.Error -> {
                         isPaginationContinue = false
+                        _isLoadMoreVisibility.postValue(false)
                     }
                 }
             }
@@ -69,6 +74,25 @@ class MainViewModel(
     fun getJobPositionListByFilter(
         keyword: String?
     ) {
+        /* This is logic for search by keyword from existing list. */
+        /*val temp = _jobPositionListLiveData.value as? MutableList
+        val searchedList = temp?.filter {
+            it.description?.contains(other = keyword.orEmpty(), ignoreCase = true) == true &&
+                    it.location?.contains(other = filterLocation.orEmpty(), ignoreCase = true) == true
+        }
+
+        if (searchedList.isNullOrEmpty()) {
+            isPaginationContinue = false
+            if (_jobPositionListLiveData.value.isNullOrEmpty()) {
+                isResetList = true
+                _jobPositionListLiveData.postValue(listOf())
+            }
+            _isLoadMoreVisibility.postValue(false)
+        } else {
+            _jobPositionListLiveData.postValue(searchedList.toList())
+            _isLoadMoreVisibility.postValue(false)
+        }*/
+
         viewModelScope.launch(dispatcher.io()) {
             val request = JobPositionRequest(
                 keyword = keyword,
@@ -87,6 +111,7 @@ class MainViewModel(
                             }
                             tempData.addAll(response)
                             _jobPositionListLiveData.postValue(tempData.toList())
+                            _isLoadMoreVisibility.postValue(true)
                         }
                     }
                     is Resource.Error -> {
@@ -95,6 +120,7 @@ class MainViewModel(
                             isResetList = true
                             _jobPositionListLiveData.postValue(listOf())
                         }
+                        _isLoadMoreVisibility.postValue(false)
                     }
                 }
             }

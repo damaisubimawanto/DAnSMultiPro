@@ -36,7 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         val layoutManager = binding.rvJobList.layoutManager as LinearLayoutManager
         object : EndlessScrollListener(
             layoutManager = layoutManager,
-            visibleThreshold = 3
+            visibleThreshold = 1
         ) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 if (viewModel.isPaginationContinue) {
@@ -68,7 +68,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
 
     override fun FragmentHomeBinding.viewInitialization() {
         with(rvJobList) {
-            mJobListAdapter = JobListAdapter {
+            mJobListAdapter = JobListAdapter(data = listOf()) {
                 activity.hideKeyboard()
                 pageNavigationApi.navigateToJobDetailActivity(
                     context = requireContext(),
@@ -141,10 +141,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
         observe(viewModel.jobPositionListLiveData) {
             if (viewModel.isResetList) {
                 viewModel.isResetList = false
-                mJobListAdapter.submitList(null)
                 mEndlessScrollListener.resetScrolling()
             }
-            mJobListAdapter.submitList(it)
+            mJobListAdapter.setData(it)
 
             tvSearchResultTitle.isVisible = etSearch.text?.length.orZero() != 0
         }
@@ -153,6 +152,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainViewModel>() {
             filterBox.clMainViewFilterBox.isVisible = isShown
             ivSearchFilter.isVisible = !isShown
             ivSearchFilterLess.isVisible = isShown
+        }
+
+        observe(viewModel.isLoadMoreVisibility) { isShown ->
+            mJobListAdapter.setLoadMoreVisibility(isLoadMoreShowing = isShown)
         }
     }
 
